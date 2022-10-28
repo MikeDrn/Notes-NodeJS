@@ -151,7 +151,13 @@ exports.updateNote = async (req, res, next) => {
     const title = req.body.title;
     const content = req.body.content;
     const category = mongoose.Types.ObjectId(req.body.category);
-    const tags = req.body.tags.split(" ");
+    
+    let tags = req.body.tags;
+    if (tags) {
+      tags = tags.split(" ");
+    } else {
+      tags = [];
+    }
 
     const note = await Note.findOne({ _id: noteId });
 
