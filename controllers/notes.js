@@ -118,7 +118,7 @@ exports.getNote = async (req, res, next) => {
   const noteId = req.params.noteId;
 
   try {
-    const note = await Note.findOne({ _id: noteId });
+    const note = await Note.findOne({ _id: noteId, creator: req.userId });
 
     if (!note) {
       const error = new Error("Could not find note");
