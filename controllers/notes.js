@@ -7,6 +7,7 @@ const Category = require("../models/category");
 
 exports.getNotes = async (req, res, next) => {
   const category = req.query.category;
+  Note.createIndexes({ creator: req.userId });
 
   try {
     // Only get notes belonging to the logged in user
